@@ -1,0 +1,23 @@
+@import url("/src/shared/breakpoints.css");
+
+.root {
+  display: flex;
+  gap: 38px;
+
+  @media (--m-viewport) {
+    flex-direction: column;
+  }
+
+  @media (--s-viewport) {
+    gap: 16px;
+  }
+}
+
+.content {
+  flex: 1;
+  flex-grow: 1;
+}
+
+.description {
+  padding: 24px 0;
+}
