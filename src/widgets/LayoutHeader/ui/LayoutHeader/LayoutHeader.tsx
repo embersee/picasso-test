@@ -1,18 +1,17 @@
-import { skipToken } from "@reduxjs/toolkit/dist/query";
-import { type ReactNode } from "react";
-
-import { useAppSelector } from "@/shared/model";
-import { Logo } from "../Logo/Logo";
 import css from "./LayoutHeader.module.css";
+import cn from "classnames";
 
-type Props = {
-  rightContentSlot?: ReactNode;
-};
-
-export function LayoutHeader(props: Props) {
+export function LayoutHeader() {
   return (
     <header className={css.root}>
-      <Logo />
+      Picasso-test by{" "}
+      <a
+        href="https://t.me/embersee"
+        className={cn(css.creator, "creator")}
+        target="_blank"
+      >
+        Philipp S
+      </a>
     </header>
   );
 }

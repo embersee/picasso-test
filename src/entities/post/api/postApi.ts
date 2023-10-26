@@ -19,7 +19,23 @@ export const PostApi = baseApi.injectEndpoints({
       }),
       transformResponse: (response: PostDto) => mapPostDetails(response),
     }),
+    PostsInfinite: build.query<Post[], number>({
+      query: (page) => ({ url: `/posts?_page=${page}&_limit=20` }),
+      // Only have one cache entry because the arg always maps to one string
+      serializeQueryArgs: ({ endpointName }) => {
+        return endpointName;
+      },
+      // Always merge incoming data to the cache entry
+      merge: (currentCache, newItems) => {
+        currentCache.push(...newItems);
+      },
+      // Refetch when the page arg changes
+      forceRefetch({ currentArg, previousArg }) {
+        return currentArg !== previousArg;
+      },
+    }),
   }),
 });
 
-export const { usePostsQuery, usePostDetailsQuery } = PostApi;
+export const { usePostsQuery, usePostDetailsQuery, usePostsInfiniteQuery } =
+  PostApi;

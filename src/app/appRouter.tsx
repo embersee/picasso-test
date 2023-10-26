@@ -1,7 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-
 import { baseLayout } from "./layouts/baseLayout";
-import { layoutWithSidebar } from "./layouts/layoutWithSidebar";
 import { MainPage } from "../pages/main";
 import { PostPage } from "@/pages/post";
 
@@ -19,7 +17,7 @@ export const appRouter = () =>
       ],
     },
     {
-      element: layoutWithSidebar,
+      element: baseLayout,
       errorElement: <div>error</div>,
 
       children: [

@@ -22,7 +22,6 @@ const persistConfig = {
 
 export function makeStore() {
   const store = configureStore({
-    // 👇 ATTENTION: persistReducer broke infering RootState
     reducer: persistReducer(
       persistConfig,
       rootReducer

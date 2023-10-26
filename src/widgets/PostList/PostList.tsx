@@ -1,5 +1,4 @@
 import cn from "classnames";
-import { type ReactNode } from "react";
 
 import css from "./PostList.module.css";
 import { Post, PostCard } from "@/entities/post";
@@ -18,8 +17,8 @@ export function PostList<T extends Post>(props: Props<T>) {
 
   return (
     <div className={cn(css.root, isFetching && css.rootIsFetching)}>
-      {Posts.map((Post) => (
-        <PostCard key={Post.id} Post={Post} />
+      {Posts.map((Post, i) => (
+        <PostCard key={i} Post={Post} />
       ))}
     </div>
   );

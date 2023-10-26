@@ -6,28 +6,22 @@ type Props = {
   navbarSlot?: ReactNode;
   headerSlot: ReactNode;
   bottomSlot?: ReactNode;
-  announcementSlot?: ReactNode;
-  sidebarSlot?: ReactNode;
 };
 
 export function Layout(props: Props) {
   return (
     <div className={css.root}>
-      {props.announcementSlot}
       {props.navbarSlot}
       {props.headerSlot}
       <div className={css.container}>
         <div className={css.content}>
           <Outlet />
         </div>
-        {props.sidebarSlot && (
-          <aside className={css.sidebar}>{props.sidebarSlot}</aside>
-        )}
       </div>
       <footer className={css.footer}>
-        <div className="text_sm"></div>
+        <div className="text_sm">{props.bottomSlot}</div>
       </footer>
-      {props.bottomSlot}
+
       <ScrollRestoration />
     </div>
   );

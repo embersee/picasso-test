@@ -14,12 +14,20 @@ export function PostCard(props: Props) {
   const { id, title, body } = Post;
 
   return (
-    <Link to={`/post/${Post.id}`}>
+    <div className={css.root}>
       <div className={css.content}>
-        <div className={cn(css.title, "text_base")}>{id}</div>
-        <div className={cn(css.title, "text_base")}>{title}</div>
-        <div className={cn(css.label, "text_xs")}>{body}</div>
+        <div className={cn(css.title, "text_base text_bold")}>
+          {id} {title}
+        </div>
+
+        <div className={cn(css.description, "text_xs")}>{body}</div>
+        <Link
+          className={cn(css.preview_link, "text_xs")}
+          to={`/post/${Post.id}`}
+        >
+          Просмотр
+        </Link>
       </div>
-    </Link>
+    </div>
   );
 }
