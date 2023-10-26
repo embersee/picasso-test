@@ -1,6 +1,6 @@
 import { type PostDetails as postDetailsType } from "@/entities/post";
 
-import css from "./postDetails.module.css";
+import css from "./PostDetails.module.css";
 import { Back } from "@/shared/ui";
 
 type Props = {
