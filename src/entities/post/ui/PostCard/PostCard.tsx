@@ -6,25 +6,22 @@ import { type Post } from "../../model/types";
 import css from "./PostCard.module.css";
 
 type Props = {
-  Post: Post;
+  post: Post;
+  style: React.CSSProperties;
 };
 
-export function PostCard(props: Props) {
-  const { Post } = props;
-  const { id, title, body } = Post;
+export function PostCard({ post, style }: Props) {
+  const { id, title, body } = post;
 
   return (
-    <div className={css.root}>
+    <div className={css.root} style={style}>
       <div className={css.content}>
         <div className={cn(css.title, "text_base text_bold")}>
           {id} {title}
         </div>
 
         <div className={cn(css.description, "text_xs")}>{body}</div>
-        <Link
-          className={cn(css.preview_link, "text_xs")}
-          to={`/post/${Post.id}`}
-        >
+        <Link className={cn(css.preview_link, "text_xs")} to={`/post/${id}`}>
           Просмотр
         </Link>
       </div>

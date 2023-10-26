@@ -9,15 +9,20 @@ type PageSliceState = {
 };
 
 const initialState: PageSliceState = {
-  currentPage: 1,
+  currentPage: 0,
 };
 
 export const pageSlice = createSlice({
   name: "page",
   initialState,
   reducers: {
-    increment: (state) => {
-      state.currentPage += 1;
+    increment: (
+      state,
+      action: PayloadAction<{ increment: number; total: number }>
+    ) => {
+      if (state.currentPage >= action.payload.total) return;
+
+      state.currentPage += action.payload.increment;
     },
   },
 });

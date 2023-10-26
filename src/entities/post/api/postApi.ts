@@ -7,9 +7,9 @@ import { mapPostDetails } from "../lib/mapPostDetails";
 
 export const PostApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    Posts: build.query<Post[], void>({
-      query: () => ({
-        url: `/posts`,
+    Posts: build.query<Post[], { start: number; limit: number }>({
+      query: ({ start, limit }) => ({
+        url: `/posts?_start=${start}&_limit=${limit}`,
       }),
       transformResponse: (response: PostDto[]) => response.map(mapPost),
     }),
@@ -19,8 +19,10 @@ export const PostApi = baseApi.injectEndpoints({
       }),
       transformResponse: (response: PostDto) => mapPostDetails(response),
     }),
-    PostsInfinite: build.query<Post[], number>({
-      query: (page) => ({ url: `/posts?_page=${page}&_limit=20` }),
+    PostsInfinite: build.query<Post[], { start: number; limit: number }>({
+      query: ({ start, limit }) => ({
+        url: `/posts?_start=${start}&_limit=${limit}`,
+      }),
       // Only have one cache entry because the arg always maps to one string
       serializeQueryArgs: ({ endpointName }) => {
         return endpointName;
@@ -33,6 +35,8 @@ export const PostApi = baseApi.injectEndpoints({
       forceRefetch({ currentArg, previousArg }) {
         return currentArg !== previousArg;
       },
+
+      // transformResponse: (response: PostDto[]) => response.map(mapPost),
     }),
   }),
 });

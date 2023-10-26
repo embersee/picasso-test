@@ -1,9 +1,9 @@
-import { PostPopularList } from "@/widgets/PostPopularList";
+import { PostList } from "@/widgets/PostList";
 
 export function MainPage() {
   return (
     <>
-      <PostPopularList />
+      <PostList />
     </>
   );
 }
